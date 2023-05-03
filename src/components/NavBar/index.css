@@ -1,0 +1,37 @@
+/* Write your code here. */
+.navbar {
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  color: #ffffff;
+  background-image: linear-gradient(to right, #9796f0, #fbc7d4);
+}
+
+.nav-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-image {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.nav-item-name {
+  font-weight: 600;
+  margin-right: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-item-name {
+    margin-right: 15px;
+  }
+
+  .navbar {
+    padding: 10px 30px;
+  }
+}
