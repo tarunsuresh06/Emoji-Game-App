@@ -10,3 +10,20 @@
   margin: 5px;
   cursor: pointer;
 }
+
+.emoji-btn {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .emoji-card {
+    width: 120px;
+    height: 120px;
+  }
+}

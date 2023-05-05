@@ -1,1 +1,60 @@
-/* Write your code here. */
+.win-or-lose-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff33;
+  border: 1px solid #ffffff30;
+  border-radius: 10px;
+  width: 500px;
+  color: #ffffff;
+  min-height: 400px;
+  text-align: center;
+}
+
+.win-or-lose-card-content {
+  min-width: 250px;
+}
+
+.win-or-lose-card-title {
+  font-size: 45px;
+  font-weight: 700;
+}
+
+.best-score-heading {
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.best-score {
+  font-size: 23px;
+  font-weight: 700;
+  color: #6a59ff;
+}
+
+.play-again-btn {
+  background-color: #ffce27;
+  color: #3d3d3d;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  outline: none;
+  font-weight: 700;
+}
+
+.win-lose-img {
+  width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .win-or-lose-card {
+    flex-direction: column;
+    padding: 50px 30px;
+  }
+
+  .win-or-lose-card-content {
+    order: 1;
+  }
+}

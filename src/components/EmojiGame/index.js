@@ -1,34 +1,75 @@
 import {Component} from 'react'
 import NavBar from '../NavBar'
 import EmojiCard from '../EmojiCard'
+import WinOrLosecard from '../WinOrLoseCard'
 import './index.css'
-/* 
-Quick Tip 
-
-- Use the below function in the EmojiGame Component to shuffle the emojisList every time when an emoji is clicked.
-
-const shuffledEmojisList = () => {
-  const {emojisList} = this.props
-  return emojisList.sort(() => Math.random() - 0.5)
-}
-
-*/
-
-// Write your code here.
 
 class EmojiGame extends Component {
-  render() {
+  state = {score: 0, topScore: 0, emojisClicked: [], isGameOver: false}
+
+  onAddToEmojisList = id => {
+    const {emojisClicked} = this.state
+
+    if (!emojisClicked.includes(id)) {
+      this.setState(prevState => ({
+        score: prevState.score + 1,
+        emojisClicked: [...prevState.emojisClicked, id],
+      }))
+
+      const {score} = this.state
+
+      if (score === 11) {
+        this.setState({isGameOver: true, topScore: 12})
+      }
+    } else {
+      const {score, topScore} = this.state
+
+      const setTopScore = score > topScore ? score : topScore
+
+      this.setState({
+        isGameOver: true,
+        topScore: setTopScore,
+        emojisClicked: [],
+      })
+    }
+  }
+
+  renderEmojisList = () => {
     const {emojisList} = this.props
+    emojisList.sort(() => Math.random() - 0.5)
+
+    return (
+      <ul className="emoji-container">
+        {emojisList.map(emojiDetails => (
+          <EmojiCard
+            key={emojiDetails.id}
+            emojiDetails={emojiDetails}
+            onAddToEmojisList={this.onAddToEmojisList}
+          />
+        ))}
+      </ul>
+    )
+  }
+
+  triggerPlayAgain = () => {
+    this.setState({isGameOver: false, score: 0})
+  }
+
+  render() {
+    const {score, topScore, isGameOver} = this.state
 
     return (
       <>
-        <NavBar />
+        <NavBar score={score} topScore={topScore} isGameOver={isGameOver} />
         <div className="app-container">
-          <ul className="emoji-container">
-            {emojisList.map(emojiDetails => (
-              <EmojiCard key={emojiDetails.id} emojiDetails={emojiDetails} />
-            ))}
-          </ul>
+          {isGameOver ? (
+            <WinOrLosecard
+              score={score}
+              triggerPlayAgain={this.triggerPlayAgain}
+            />
+          ) : (
+            this.renderEmojisList()
+          )}
         </div>
       </>
     )
